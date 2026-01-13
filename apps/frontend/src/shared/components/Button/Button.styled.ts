@@ -19,6 +19,14 @@ const variantStyles = {
 			background: #e9ecef;
 		}
 	`,
+	retry: css`
+		background: #fff;
+		border: 1px solid #ffc9c9;
+		color: #c92a2a;
+		&:hover:not(:disabled) {
+			background: #ede9e9;
+		}
+	`,
 };
 
 export const Button = styled.button<{ variant: ButtonVariant }>`

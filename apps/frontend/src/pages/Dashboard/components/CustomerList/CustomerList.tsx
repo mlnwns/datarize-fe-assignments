@@ -3,6 +3,7 @@ import type { Customer } from "@/apis/customer/type";
 import { useCustomers } from "@/pages/Dashboard/hooks/useCustomers";
 import Button from "@/shared/components/Button/Button";
 import SearchBar from "@/shared/components/SearchBar/SearchBar";
+import SortIcon from "@/shared/components/SortIcon/SortIcon";
 import type { DateRangeParams } from "@/shared/types/date";
 import { formatKoreanPrice } from "@/shared/utils/price";
 import * as S from "./CustomerList.styled";
@@ -14,14 +15,15 @@ interface CustomerListProps {
 	onCustomerSelect: (customer: Customer) => void;
 }
 
-export const CustomerList = ({
+function CustomerList({
 	from,
 	to,
 	selectedCustomerId,
 	onCustomerSelect,
-}: CustomerListProps) => {
+}: CustomerListProps) {
 	const [page, setPage] = useState(1);
 	const [customerName, setCustomerName] = useState("");
+	const [sortBy, setSortBy] = useState<"" | "asc" | "desc">("");
 
 	const { data, isLoading, isError } = useCustomers({
 		from,
@@ -29,12 +31,23 @@ export const CustomerList = ({
 		page,
 		limit: 10,
 		name: customerName,
+		sortBy: sortBy || undefined,
 	});
 
 	const customers = data?.data ?? [];
 	const pagination = data?.pagination;
 
 	const hasData = !isLoading && !isError && customers.length > 0;
+
+	const handleSortToggle = () => {
+		setSortBy((prev) => (prev === "" ? "asc" : prev === "asc" ? "desc" : ""));
+		setPage(1);
+	};
+
+	const handleCustomerNameChange = (value: string) => {
+		setCustomerName(value);
+		setPage(1);
+	};
 
 	const renderContent = () => {
 		return (
@@ -43,10 +56,7 @@ export const CustomerList = ({
 					label="고객명 검색"
 					placeholder="고객명 입력"
 					value={customerName}
-					onChange={(value) => {
-						setCustomerName(value);
-						setPage(1);
-					}}
+					onChange={handleCustomerNameChange}
 				/>
 				{isLoading && <S.LoadingText>고객 목록을 불러오는 중</S.LoadingText>}
 
@@ -63,7 +73,12 @@ export const CustomerList = ({
 								<S.TableHeadCell width="15%">ID</S.TableHeadCell>
 								<S.TableHeadCell width="30%">고객명</S.TableHeadCell>
 								<S.TableHeadCell width="25%">총 구매 횟수</S.TableHeadCell>
-								<S.TableHeadCell width="30%">총 주문 금액</S.TableHeadCell>
+								<S.SortableTableHeadCell width="30%" onClick={handleSortToggle}>
+									<S.SortHeadContent>
+										<S.SortHeadLabel>총 주문 금액</S.SortHeadLabel>
+										<SortIcon direction={sortBy} />
+									</S.SortHeadContent>
+								</S.SortableTableHeadCell>
 							</tr>
 						</S.TableHead>
 						<S.TableBody>
@@ -118,4 +133,6 @@ export const CustomerList = ({
 			)}
 		</S.Container>
 	);
-};
+}
+
+export default CustomerList;

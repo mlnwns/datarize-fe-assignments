@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { statusMessage } from "@/shared/styles/statusMessage.styled";
+import { TableHeadCell } from "@/shared/styles/table.styled";
 
 export * from "@/shared/styles/table.styled";
 
@@ -42,4 +43,17 @@ export const ErrorText = styled.p`
 export const EmptyText = styled.p`
 	${statusMessage}
 	color: #868e96;
+`;
+
+export const SortableTableHeadCell = styled(TableHeadCell)`
+	cursor: pointer;
+	user-select: none;
+`;
+
+export const SortHeadContent = styled.div`
+	display: flex;
+	align-items: center;
+`;
+
+export const SortHeadLabel = styled.span`
 `;

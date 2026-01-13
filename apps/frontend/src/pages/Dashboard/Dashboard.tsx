@@ -3,7 +3,7 @@ import type { Customer } from "@/apis/customer/type";
 import logo from "@/assets/logo.png";
 import type { ISODateString } from "@/shared/types/date";
 import CustomerDetail from "./components/CustomerDetail/CustomerDetail";
-import { CustomerList } from "./components/CustomerList/CustomerList";
+import CustomerList from "./components/CustomerList/CustomerList";
 import DashboardSection from "./components/DashboardSection/DashboardSection";
 import DateRangePicker from "./components/DateRangePicker/DateRangePicker";
 import DownloadCSVButton from "./components/PurchaseFrequency/DownloadCSVButton/DownloadCSVButton";

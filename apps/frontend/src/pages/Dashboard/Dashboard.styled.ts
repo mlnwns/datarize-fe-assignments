@@ -13,16 +13,13 @@ export const Content = styled.main`
 `;
 
 export const Header = styled.header`
-  position: sticky;
   z-index: 100;
   padding: 1.8rem 0.75rem 1.8rem 1.3125rem;
 
   display: flex;
   align-items: center;
 
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-
+  background: #fff;
   border-bottom: 1.5px solid rgba(108, 111, 118, 0.06);
 `;
 
@@ -38,7 +35,7 @@ export const HeaderTitle = styled.h1`
 `;
 
 export const FrequencySectionWrapper = styled.div`
-  min-height: 35rem;
+  height: 35rem;
   display: flex;
   flex-direction: column;
 
@@ -57,7 +54,6 @@ export const CustomerSectionWrapper = styled.div`
   & > * {
     display: flex;
     flex-direction: column;
-    min-height: 0;
   }
 
   @media (max-width: 768px) {

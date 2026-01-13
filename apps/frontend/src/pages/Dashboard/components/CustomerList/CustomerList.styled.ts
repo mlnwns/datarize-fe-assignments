@@ -30,16 +30,6 @@ export const PageInfo = styled.span`
 	font-size: 0.875rem;
 `;
 
-export const LoadingText = styled.p`
-	${statusMessage}
-	color: #868e96;
-`;
-
-export const ErrorText = styled.p`
-	${statusMessage}
-	color: #fa5252;
-`;
-
 export const EmptyText = styled.p`
 	${statusMessage}
 	color: #868e96;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Customer } from "@/apis/customer/type";
 import { useCustomers } from "@/pages/Dashboard/hooks/useCustomers";
 import Button from "@/shared/components/Button/Button";
+import DeferredSpinner from "@/shared/components/Loading/DeferredSpinner";
 import SearchBar from "@/shared/components/SearchBar/SearchBar";
 import SortIcon from "@/shared/components/SortIcon/SortIcon";
 import type { DateRangeParams } from "@/shared/types/date";
@@ -25,7 +26,7 @@ function CustomerList({
 	const [customerName, setCustomerName] = useState("");
 	const [sortBy, setSortBy] = useState<"" | "asc" | "desc">("");
 
-	const { data, isLoading, isError } = useCustomers({
+	const { data, isLoading } = useCustomers({
 		from,
 		to,
 		page,
@@ -37,8 +38,8 @@ function CustomerList({
 	const customers = data?.data ?? [];
 	const pagination = data?.pagination;
 
-	const hasData = !isLoading && !isError && customers.length > 0;
-	const isEmpty = !isLoading && !isError && customers.length === 0;
+	const hasData = !isLoading && customers.length > 0;
+	const isEmpty = !isLoading && customers.length === 0;
 
 	const handleSortToggle = () => {
 		setSortBy((prev) => (prev === "" ? "asc" : prev === "asc" ? "desc" : ""));
@@ -58,20 +59,17 @@ function CustomerList({
 					placeholder="고객명 입력"
 					value={customerName}
 					onChange={handleCustomerNameChange}
+					disabled={isLoading}
 				/>
 
-				{isLoading && <S.LoadingText>고객 목록을 불러오는 중</S.LoadingText>}
-
-				{isError && (
-					<S.ErrorText>고객 목록을 불러오는데 실패했습니다.</S.ErrorText>
-				)}
+				{isLoading && <DeferredSpinner />}
 
 				{isEmpty && <S.EmptyText>고객 목록이 없습니다.</S.EmptyText>}
 
 				{hasData && (
 					<S.Table>
 						<S.TableHead>
-							<tr>
+							<S.TableRow>
 								<S.TableHeadCell width="15%">ID</S.TableHeadCell>
 								<S.TableHeadCell width="30%">고객명</S.TableHeadCell>
 								<S.TableHeadCell width="25%">총 구매 횟수</S.TableHeadCell>
@@ -81,7 +79,7 @@ function CustomerList({
 										<SortIcon direction={sortBy} />
 									</S.SortHeadContent>
 								</S.SortableTableHeadCell>
-							</tr>
+							</S.TableRow>
 						</S.TableHead>
 						<S.TableBody>
 							{customers.map((customer) => (

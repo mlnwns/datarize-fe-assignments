@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
+import { Suspense, useState } from "react";
 import type { Customer } from "@/apis/customer/type";
 import logo from "@/assets/logo.png";
+import ErrorBoundary from "@/shared/components/ErrorBoundary/ErrorBoundary";
+import DeferredSpinner from "@/shared/components/Loading/DeferredSpinner";
 import type { ISODateString } from "@/shared/types/date";
 import CustomerDetail from "./components/CustomerDetail/CustomerDetail";
 import CustomerList from "./components/CustomerList/CustomerList";
@@ -24,6 +27,8 @@ function Dashboard() {
 		null,
 	);
 
+	const { reset } = useQueryErrorResetBoundary();
+
 	return (
 		<S.Layout>
 			<S.Header>
@@ -45,7 +50,11 @@ function Dashboard() {
 						description="설정된 기간동안 구매된 상품의 가격대별 구매 빈도입니다."
 						action={<DownloadCSVButton from={startDate} to={endDate} />}
 					>
-						<PurchaseFrequency from={startDate} to={endDate} />
+						<ErrorBoundary onReset={reset}>
+							<Suspense fallback={<DeferredSpinner />}>
+								<PurchaseFrequency from={startDate} to={endDate} />
+							</Suspense>
+						</ErrorBoundary>
 					</DashboardSection>
 				</S.FrequencySectionWrapper>
 
@@ -54,23 +63,27 @@ function Dashboard() {
 						title="고객 목록"
 						description="설정된 기간동안 구매한 고객 목록입니다."
 					>
-						<CustomerList
-							from={startDate}
-							to={endDate}
-							selectedCustomerId={selectedCustomer?.id}
-							onCustomerSelect={setSelectedCustomer}
-						/>
+						<ErrorBoundary onReset={reset}>
+							<CustomerList
+								from={startDate}
+								to={endDate}
+								selectedCustomerId={selectedCustomer?.id}
+								onCustomerSelect={setSelectedCustomer}
+							/>
+						</ErrorBoundary>
 					</DashboardSection>
 
 					<DashboardSection
 						title="고객 상세"
 						description="선택한 고객의 구매 내역입니다."
 					>
-						<CustomerDetail
-							customer={selectedCustomer}
-							from={startDate}
-							to={endDate}
-						/>
+						<ErrorBoundary onReset={reset}>
+							<CustomerDetail
+								customer={selectedCustomer}
+								from={startDate}
+								to={endDate}
+							/>
+						</ErrorBoundary>
 					</DashboardSection>
 				</S.CustomerSectionWrapper>
 			</S.Content>

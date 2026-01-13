@@ -1,5 +1,6 @@
 import type { Customer } from "@/apis/customer/type";
 import { useCustomerPurchases } from "@/pages/Dashboard/hooks/useCustomerPurchases";
+import DeferredSpinner from "@/shared/components/Loading/DeferredSpinner";
 import type { DateRangeParams } from "@/shared/types/date";
 import { formatKoreanPrice } from "@/shared/utils/price";
 import * as S from "./CustomerDetail.styled";
@@ -11,7 +12,7 @@ interface CustomerDetailProps {
 }
 
 function CustomerDetail({ customer, from, to }: CustomerDetailProps) {
-	const { data, isLoading, isError } = useCustomerPurchases(customer?.id, {
+	const { data, isLoading } = useCustomerPurchases(customer?.id, {
 		from,
 		to,
 	});
@@ -28,11 +29,7 @@ function CustomerDetail({ customer, from, to }: CustomerDetailProps) {
 		}
 
 		if (isLoading) {
-			return <S.LoadingText>구매 내역을 불러오는 중</S.LoadingText>;
-		}
-
-		if (isError) {
-			return <S.ErrorText>구매 내역을 불러오는데 실패했습니다.</S.ErrorText>;
+			return <DeferredSpinner />;
 		}
 
 		return (

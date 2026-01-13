@@ -21,6 +21,14 @@ export const TableHeadCell = styled.th<{ width?: string }>`
 
 export const TableBody = styled.tbody``;
 
+export const TableCell = styled.td`
+	padding: 0.75rem 1rem;
+	border-bottom: 1px solid #dee2e6;
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	white-space: nowrap; 
+`;
+
 export const TableRow = styled.tr<{
 	isClickable?: boolean;
 	isSelected?: boolean;
@@ -31,12 +39,4 @@ export const TableRow = styled.tr<{
 	&:hover {
 		background: ${({ isSelected }) => (isSelected ? "#f7ff91" : "#f8f9fa")};
 	}
-`;
-
-export const TableCell = styled.td`
-	padding: 0.75rem 1rem;
-	border-bottom: 1px solid #dee2e6;
-	overflow: hidden; 
-	text-overflow: ellipsis; 
-	white-space: nowrap; 
 `;

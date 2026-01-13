@@ -38,6 +38,7 @@ function CustomerList({
 	const pagination = data?.pagination;
 
 	const hasData = !isLoading && !isError && customers.length > 0;
+	const isEmpty = !isLoading && !isError && customers.length === 0;
 
 	const handleSortToggle = () => {
 		setSortBy((prev) => (prev === "" ? "asc" : prev === "asc" ? "desc" : ""));
@@ -58,13 +59,14 @@ function CustomerList({
 					value={customerName}
 					onChange={handleCustomerNameChange}
 				/>
+
 				{isLoading && <S.LoadingText>고객 목록을 불러오는 중</S.LoadingText>}
 
 				{isError && (
 					<S.ErrorText>고객 목록을 불러오는데 실패했습니다.</S.ErrorText>
 				)}
 
-				{!hasData && <S.EmptyText>고객 목록이 없습니다.</S.EmptyText>}
+				{isEmpty && <S.EmptyText>고객 목록이 없습니다.</S.EmptyText>}
 
 				{hasData && (
 					<S.Table>

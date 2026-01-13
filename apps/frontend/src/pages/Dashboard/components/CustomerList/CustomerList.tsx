@@ -5,6 +5,7 @@ import Button from "@/shared/components/Button/Button";
 import DeferredSpinner from "@/shared/components/Loading/DeferredSpinner";
 import SearchBar from "@/shared/components/SearchBar/SearchBar";
 import SortIcon from "@/shared/components/SortIcon/SortIcon";
+import useDebounce from "@/shared/hooks/useDebounce";
 import type { DateRangeParams } from "@/shared/types/date";
 import { formatKoreanPrice } from "@/shared/utils/price";
 import * as S from "./CustomerList.styled";
@@ -26,12 +27,16 @@ function CustomerList({
 	const [customerName, setCustomerName] = useState("");
 	const [sortBy, setSortBy] = useState<"" | "asc" | "desc">("");
 
+	const debouncedCustomerName = useDebounce({
+		value: customerName,
+	});
+
 	const { data, isLoading } = useCustomers({
 		from,
 		to,
 		page,
 		limit: 10,
-		name: customerName,
+		name: debouncedCustomerName,
 		sortBy: sortBy || undefined,
 	});
 
@@ -59,7 +64,6 @@ function CustomerList({
 					placeholder="고객명 입력"
 					value={customerName}
 					onChange={handleCustomerNameChange}
-					disabled={isLoading}
 				/>
 
 				{isLoading && <DeferredSpinner />}

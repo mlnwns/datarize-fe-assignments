@@ -14,7 +14,7 @@ export interface Pagination {
 	totalPages: number;
 }
 
-export interface CustomerListResponse {
+export interface CustomerList {
 	data: Customer[];
 	pagination: Pagination;
 }

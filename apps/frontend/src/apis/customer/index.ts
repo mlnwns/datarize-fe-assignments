@@ -1,13 +1,13 @@
 import type { DateRangeParams } from "@/shared/types/date";
 import { httpGet } from "../../shared/apis/http";
 import type {
+	CustomerList,
 	CustomerListParams,
-	CustomerListResponse,
 	CustomerPurchaseDetail,
 } from "./type";
 
 export async function getCustomers(params?: CustomerListParams) {
-	return httpGet<CustomerListResponse>("/api/customers", { params });
+	return httpGet<CustomerList>("/api/customers", { params });
 }
 
 export async function getCustomerPurchases(

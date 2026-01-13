@@ -36,7 +36,7 @@ function Dashboard() {
 					title="구매 빈도"
 					description="설정된 기간동안 구매된 상품의 가격대별 구매 빈도입니다."
 				>
-					<PurchaseFrequency />
+					<PurchaseFrequency from={startDate} to={endDate} />
 				</DashboardSection>
 			</S.Content>
 		</S.Layout>

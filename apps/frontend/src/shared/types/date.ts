@@ -6,6 +6,6 @@
 export type ISODateString = string;
 
 export type DateRangeParams = {
-	from?: ISODateString | null;
-	to?: ISODateString | null;
+	from?: ISODateString;
+	to?: ISODateString;
 };

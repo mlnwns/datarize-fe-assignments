@@ -1,9 +1,18 @@
+import type { DateRangeParams } from "@/shared/types/date";
 import { usePurchaseFrequency } from "../../hooks/usePurchaseFrequency";
 import { formatPriceRange } from "../../utils/formatPriceRange";
 import * as S from "./PurchaseFrequency.styled";
 
-export default function PurchaseFrequency() {
-	const { data, isLoading, isError } = usePurchaseFrequency();
+interface PurchaseFrequencyProps {
+	from: DateRangeParams["from"];
+	to: DateRangeParams["to"];
+}
+
+export default function PurchaseFrequency({
+	from,
+	to,
+}: PurchaseFrequencyProps) {
+	const { data, isLoading, isError } = usePurchaseFrequency({ from, to });
 
 	// TODO: 로딩 및 에러 상태 처리 개선 필요
 	if (isLoading) {

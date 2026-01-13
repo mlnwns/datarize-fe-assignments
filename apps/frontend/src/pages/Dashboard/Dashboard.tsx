@@ -3,6 +3,7 @@ import logo from "@/assets/logo.png";
 import type { ISODateString } from "@/shared/types/date";
 import DashboardSection from "./components/DashboardSection/DashboardSection";
 import DatePicker from "./components/DatePicker/DatePicker";
+import DownloadCSVButton from "./components/DownloadCSVButton/DownloadCSVButton";
 import PurchaseFrequency from "./components/PurchaseFrequency/PurchaseFrequency";
 import * as S from "./Dashboard.styled";
 import { createInitialDateRange } from "./utils/createInitialDateRange";
@@ -35,6 +36,7 @@ function Dashboard() {
 				<DashboardSection
 					title="구매 빈도"
 					description="설정된 기간동안 구매된 상품의 가격대별 구매 빈도입니다."
+					action={<DownloadCSVButton from={startDate} to={endDate} />}
 				>
 					<PurchaseFrequency from={startDate} to={endDate} />
 				</DashboardSection>

@@ -7,10 +7,17 @@ export const Section = styled.section`
 `;
 
 export const SectionHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  
+	display: flex;
+	justify-content: space-between;
+`;
+
+export const SectionInfo = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+`;
+
+export const SectionAction = styled.div`
 `;
 
 export const Title = styled.h2`

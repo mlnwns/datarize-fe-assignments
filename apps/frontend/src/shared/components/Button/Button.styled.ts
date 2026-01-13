@@ -35,5 +35,6 @@ export const Button = styled.button<{ variant: ButtonVariant }>`
 		background: #adb5bd;
 		color: #fff;
 		cursor: not-allowed;
+		border: 1px solid #adb5bd;
 	}
 `;

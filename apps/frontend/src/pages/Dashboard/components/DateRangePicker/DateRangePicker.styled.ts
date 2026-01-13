@@ -8,7 +8,7 @@ export const Container = styled.div`
 	border-radius: 1rem;
 `;
 
-export const DatePickerItem = styled.div`
+export const DateRangePickerItem = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;

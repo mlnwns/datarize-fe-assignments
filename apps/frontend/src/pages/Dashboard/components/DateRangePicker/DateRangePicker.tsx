@@ -1,20 +1,20 @@
 import { useState } from "react";
 import type { ISODateString } from "@/shared/types/date";
-import * as S from "./DatePicker.styled";
+import * as S from "./DateRangePicker.styled";
 
-interface DatePickerProps {
+interface DateRangePickerProps {
 	startDate: ISODateString;
 	endDate: ISODateString;
 	onStartDateChange: (date: ISODateString) => void;
 	onEndDateChange: (date: ISODateString) => void;
 }
 
-function DatePicker({
+function DateRangePicker({
 	startDate,
 	endDate,
 	onStartDateChange,
 	onEndDateChange,
-}: DatePickerProps) {
+}: DateRangePickerProps) {
 	const [inputStartDate, setInputStartDate] = useState(startDate);
 	const [inputEndDate, setInputEndDate] = useState(endDate);
 
@@ -32,7 +32,7 @@ function DatePicker({
 
 	return (
 		<S.Container>
-			<S.DatePickerItem>
+			<S.DateRangePickerItem>
 				<S.Label htmlFor="start-date">시작 일자 지정</S.Label>
 				<S.Input
 					id="start-date"
@@ -42,8 +42,8 @@ function DatePicker({
 					onChange={(e) => setInputStartDate(e.target.value)}
 					onBlur={handleBlur}
 				/>
-			</S.DatePickerItem>
-			<S.DatePickerItem>
+			</S.DateRangePickerItem>
+			<S.DateRangePickerItem>
 				<S.Label htmlFor="end-date">종료 일자 지정</S.Label>
 				<S.Input
 					id="end-date"
@@ -53,9 +53,9 @@ function DatePicker({
 					onChange={(e) => setInputEndDate(e.target.value)}
 					onBlur={handleBlur}
 				/>
-			</S.DatePickerItem>
+			</S.DateRangePickerItem>
 		</S.Container>
 	);
 }
 
-export default DatePicker;
+export default DateRangePicker;

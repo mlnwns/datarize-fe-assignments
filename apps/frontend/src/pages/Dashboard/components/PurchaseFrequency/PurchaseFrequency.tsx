@@ -1,6 +1,6 @@
 import { usePurchaseFrequency } from "../../hooks/usePurchaseFrequency";
+import { formatPriceRange } from "../../utils/formatPriceRange";
 import * as S from "./PurchaseFrequency.styled";
-import { formatPriceRange } from "./utils/formatPriceRange";
 
 export default function PurchaseFrequency() {
 	const { data, isLoading, isError } = usePurchaseFrequency();

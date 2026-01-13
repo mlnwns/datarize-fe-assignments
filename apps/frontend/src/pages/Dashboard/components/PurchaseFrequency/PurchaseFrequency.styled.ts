@@ -3,10 +3,6 @@ import { statusMessage } from "@/shared/styles/statusMessage";
 
 export * from "@/shared/styles/table";
 
-export const Container = styled.div`
-	margin-top: 1.5rem;
-`;
-
 export const Table = styled.table`
 	width: 100%;
 	font-size: 0.875rem;

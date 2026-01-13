@@ -21,24 +21,22 @@ function PurchaseFrequency({ from, to }: PurchaseFrequencyProps) {
 	}
 
 	return (
-		<S.Container>
-			<S.Table>
-				<S.TableHead>
-					<tr>
-						<S.TableHeadCell>가격대</S.TableHeadCell>
-						<S.TableHeadCell>구매빈도</S.TableHeadCell>
-					</tr>
-				</S.TableHead>
-				<S.TableBody>
-					{data?.map((item) => (
-						<S.TableRow key={item.range}>
-							<S.TableCell>{formatPriceRange(item.range)}</S.TableCell>
-							<S.TableCell>{item.count}회</S.TableCell>
-						</S.TableRow>
-					))}
-				</S.TableBody>
-			</S.Table>
-		</S.Container>
+		<S.Table>
+			<S.TableHead>
+				<tr>
+					<S.TableHeadCell>가격대</S.TableHeadCell>
+					<S.TableHeadCell>구매빈도</S.TableHeadCell>
+				</tr>
+			</S.TableHead>
+			<S.TableBody>
+				{data?.map((item) => (
+					<S.TableRow key={item.range}>
+						<S.TableCell>{formatPriceRange(item.range)}</S.TableCell>
+						<S.TableCell>{item.count}회</S.TableCell>
+					</S.TableRow>
+				))}
+			</S.TableBody>
+		</S.Table>
 	);
 }
 

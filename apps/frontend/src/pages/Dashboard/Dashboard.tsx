@@ -3,7 +3,7 @@ import logo from "@/assets/logo.png";
 import type { ISODateString } from "@/shared/types/date";
 import DashboardSection from "./components/DashboardSection/DashboardSection";
 import DateRangePicker from "./components/DateRangePicker/DateRangePicker";
-import DownloadCSVButton from "./components/DownloadCSVButton/DownloadCSVButton";
+import DownloadCSVButton from "./components/PurchaseFrequency/DownloadCSVButton/DownloadCSVButton";
 import PurchaseFrequency from "./components/PurchaseFrequency/PurchaseFrequency";
 import * as S from "./Dashboard.styled";
 import { createInitialDateRange } from "./utils/createInitialDateRange";

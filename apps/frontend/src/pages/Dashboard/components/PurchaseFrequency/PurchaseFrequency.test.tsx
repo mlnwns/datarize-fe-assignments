@@ -1,26 +1,10 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen, waitFor } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as purchaseApi from "@/apis/purchase";
+import { renderWithQueryClient } from "@/shared/test/renderWithQueryClient";
 import PurchaseFrequency from "./PurchaseFrequency";
 
 vi.mock("@/apis/purchase");
-
-const createTestQueryClient = () =>
-	new QueryClient({
-		defaultOptions: {
-			queries: {
-				retry: false,
-			},
-		},
-	});
-
-const renderWithQueryClient = (ui: React.ReactElement) => {
-	const testQueryClient = createTestQueryClient();
-	return render(
-		<QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>,
-	);
-};
 
 describe("PurchaseFrequency 통합 테스트", () => {
 	const defaultProps = {

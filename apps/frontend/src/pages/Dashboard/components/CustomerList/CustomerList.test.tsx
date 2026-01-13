@@ -1,26 +1,14 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen, waitFor } from "@testing-library/react";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { screen, waitFor } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as customerApi from "@/apis/customer";
+import {
+	createTestQueryClient,
+	renderWithQueryClient,
+} from "@/shared/test/renderWithQueryClient";
 import CustomerList from "./CustomerList";
 
 vi.mock("@/apis/customer");
-
-const createTestQueryClient = () =>
-	new QueryClient({
-		defaultOptions: {
-			queries: {
-				retry: false,
-			},
-		},
-	});
-
-const renderWithQueryClient = (ui: React.ReactElement) => {
-	const testQueryClient = createTestQueryClient();
-	return render(
-		<QueryClientProvider client={testQueryClient}>{ui}</QueryClientProvider>,
-	);
-};
 
 describe("CustomerList 통합 테스트", () => {
 	const mockOnCustomerSelect = vi.fn();

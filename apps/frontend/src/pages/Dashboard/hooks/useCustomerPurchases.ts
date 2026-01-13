@@ -10,5 +10,6 @@ export const useCustomerPurchases = (
 		queryKey: ["customerPurchases", customerId, params?.from, params?.to],
 		queryFn: () => getCustomerPurchases(customerId as number, params),
 		enabled: !!customerId,
+		throwOnError: true,
 	});
 };

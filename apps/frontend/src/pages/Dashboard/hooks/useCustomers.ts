@@ -6,5 +6,6 @@ export const useCustomers = (params?: CustomerListParams) => {
 	return useQuery({
 		queryKey: ["customers", params],
 		queryFn: () => getCustomers(params),
+		throwOnError: true,
 	});
 };

@@ -24,6 +24,7 @@ export const Header = styled.header`
 `;
 
 export const HeaderLogo = styled.img`
+  cursor: pointer;
   width: 9.375rem;
   margin-right: 1.2rem;
 `;

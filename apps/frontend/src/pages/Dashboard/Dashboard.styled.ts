@@ -5,6 +5,13 @@ export const Layout = styled.div`
   background: #f0f4f9;
 `;
 
+export const Content = styled.main`
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding: 1.5rem;
+`;
+
 export const Header = styled.header`
   position: sticky;
   z-index: 100;

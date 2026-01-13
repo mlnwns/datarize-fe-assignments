@@ -4,7 +4,6 @@ export const Section = styled.section`
   background: #fff;
   border-radius: 1rem;
   padding: 1.5rem;
-  margin: 1.5rem;
 `;
 
 export const SectionHeader = styled.div`
@@ -22,5 +21,6 @@ export const Title = styled.h2`
 
 export const Description = styled.p`
   margin: 0;
+  color: #495057;
   font-size: 0.875rem;
 `;

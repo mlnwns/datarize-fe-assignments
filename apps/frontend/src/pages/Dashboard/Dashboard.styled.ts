@@ -52,7 +52,7 @@ export const CustomerSectionWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   align-items: stretch;
-  height: 38.75rem;
+  height: 42rem;
 
   & > * {
     display: flex;

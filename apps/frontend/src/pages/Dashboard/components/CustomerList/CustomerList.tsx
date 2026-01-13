@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Customer } from "@/apis/customer/type";
 import { useCustomers } from "@/pages/Dashboard/hooks/useCustomers";
 import Button from "@/shared/components/Button/Button";
+import SearchBar from "@/shared/components/SearchBar/SearchBar";
 import type { DateRangeParams } from "@/shared/types/date";
 import { formatKoreanPrice } from "@/shared/utils/price";
 import * as S from "./CustomerList.styled";
@@ -20,6 +21,7 @@ export const CustomerList = ({
 	onCustomerSelect,
 }: CustomerListProps) => {
 	const [page, setPage] = useState(1);
+	const [customerSearch, setCustomerSearch] = useState("");
 
 	const { data, isLoading, isError } = useCustomers({
 		from,
@@ -47,33 +49,41 @@ export const CustomerList = ({
 		}
 
 		return (
-			<S.Table>
-				<S.TableHead>
-					<tr>
-						<S.TableHeadCell width="15%">ID</S.TableHeadCell>
-						<S.TableHeadCell width="30%">고객명</S.TableHeadCell>
-						<S.TableHeadCell width="25%">총 구매 횟수</S.TableHeadCell>
-						<S.TableHeadCell width="30%">총 주문 금액</S.TableHeadCell>
-					</tr>
-				</S.TableHead>
-				<S.TableBody>
-					{customers.map((customer) => (
-						<S.TableRow
-							key={customer.id}
-							isClickable={true}
-							isSelected={selectedCustomerId === customer.id}
-							onClick={() => onCustomerSelect(customer)}
-						>
-							<S.TableCell>{customer.id}</S.TableCell>
-							<S.TableCell>{customer.name}</S.TableCell>
-							<S.TableCell>{customer.count}건</S.TableCell>
-							<S.TableCell>
-								{formatKoreanPrice(customer.totalAmount)}
-							</S.TableCell>
-						</S.TableRow>
-					))}
-				</S.TableBody>
-			</S.Table>
+			<>
+				<SearchBar
+					label="고객명 검색"
+					placeholder="고객명 입력"
+					value={customerSearch}
+					onChange={(value) => setCustomerSearch(value)}
+				/>
+				<S.Table>
+					<S.TableHead>
+						<tr>
+							<S.TableHeadCell width="15%">ID</S.TableHeadCell>
+							<S.TableHeadCell width="30%">고객명</S.TableHeadCell>
+							<S.TableHeadCell width="25%">총 구매 횟수</S.TableHeadCell>
+							<S.TableHeadCell width="30%">총 주문 금액</S.TableHeadCell>
+						</tr>
+					</S.TableHead>
+					<S.TableBody>
+						{customers.map((customer) => (
+							<S.TableRow
+								key={customer.id}
+								isClickable={true}
+								isSelected={selectedCustomerId === customer.id}
+								onClick={() => onCustomerSelect(customer)}
+							>
+								<S.TableCell>{customer.id}</S.TableCell>
+								<S.TableCell>{customer.name}</S.TableCell>
+								<S.TableCell>{customer.count}건</S.TableCell>
+								<S.TableCell>
+									{formatKoreanPrice(customer.totalAmount)}
+								</S.TableCell>
+							</S.TableRow>
+						))}
+					</S.TableBody>
+				</S.Table>
+			</>
 		);
 	};
 

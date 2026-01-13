@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { ISODateString } from "@/shared/types/date";
 import * as S from "./DatePicker.styled";
 
@@ -14,6 +15,21 @@ function DatePicker({
 	onStartDateChange,
 	onEndDateChange,
 }: DatePickerProps) {
+	const [inputStartDate, setInputStartDate] = useState(startDate);
+	const [inputEndDate, setInputEndDate] = useState(endDate);
+
+	const handleBlur = () => {
+		if (inputStartDate > inputEndDate) {
+			onStartDateChange(inputEndDate);
+			onEndDateChange(inputStartDate);
+			setInputStartDate(inputEndDate);
+			setInputEndDate(inputStartDate);
+		} else {
+			onStartDateChange(inputStartDate);
+			onEndDateChange(inputEndDate);
+		}
+	};
+
 	return (
 		<S.Container>
 			<S.DatePickerItem>
@@ -21,9 +37,10 @@ function DatePicker({
 				<S.Input
 					id="start-date"
 					type="date"
-					value={startDate}
-					max={endDate}
-					onChange={(e) => onStartDateChange(e.target.value)}
+					value={inputStartDate}
+					max={inputEndDate}
+					onChange={(e) => setInputStartDate(e.target.value)}
+					onBlur={handleBlur}
 				/>
 			</S.DatePickerItem>
 			<S.DatePickerItem>
@@ -31,9 +48,10 @@ function DatePicker({
 				<S.Input
 					id="end-date"
 					type="date"
-					value={endDate}
-					min={startDate}
-					onChange={(e) => onEndDateChange(e.target.value)}
+					value={inputEndDate}
+					min={inputStartDate}
+					onChange={(e) => setInputEndDate(e.target.value)}
+					onBlur={handleBlur}
 				/>
 			</S.DatePickerItem>
 		</S.Container>

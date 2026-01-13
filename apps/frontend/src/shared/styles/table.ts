@@ -25,11 +25,11 @@ export const TableRow = styled.tr<{
 	isClickable?: boolean;
 	isSelected?: boolean;
 }>`
-	background: ${({ isSelected }) => (isSelected ? "#e7f5ff" : "transparent")};
+	background: ${({ isSelected }) => (isSelected ? "#f7ff91" : "transparent")};
 	cursor: ${({ isClickable }) => (isClickable ? "pointer" : "default")};
 
 	&:hover {
-		background: ${({ isSelected }) => (isSelected ? "#e7f5ff" : "#f8f9fa")};
+		background: ${({ isSelected }) => (isSelected ? "#f7ff91" : "#f8f9fa")};
 	}
 `;
 

@@ -36,3 +36,32 @@ export const HeaderTitle = styled.h1`
   color: #181818;
   font-weight: 400;
 `;
+
+export const FrequencySectionWrapper = styled.div`
+  min-height: 35rem;
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    flex: 1;
+  }
+`;
+
+export const CustomerSectionWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  height: 38.75rem;
+
+  & > * {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    height: auto; 
+  }
+`;

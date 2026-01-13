@@ -1,6 +1,9 @@
 import { useState } from "react";
+import type { Customer } from "@/apis/customer/type";
 import logo from "@/assets/logo.png";
 import type { ISODateString } from "@/shared/types/date";
+import CustomerDetail from "./components/CustomerDetail/CustomerDetail";
+import { CustomerList } from "./components/CustomerList/CustomerList";
 import DashboardSection from "./components/DashboardSection/DashboardSection";
 import DateRangePicker from "./components/DateRangePicker/DateRangePicker";
 import DownloadCSVButton from "./components/PurchaseFrequency/DownloadCSVButton/DownloadCSVButton";
@@ -16,6 +19,9 @@ function Dashboard() {
 	);
 	const [endDate, setEndDate] = useState<ISODateString>(
 		initialDateRange.endDate,
+	);
+	const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(
+		null,
 	);
 
 	return (
@@ -33,13 +39,40 @@ function Dashboard() {
 					onEndDateChange={setEndDate}
 				/>
 
-				<DashboardSection
-					title="구매 빈도"
-					description="설정된 기간동안 구매된 상품의 가격대별 구매 빈도입니다."
-					action={<DownloadCSVButton from={startDate} to={endDate} />}
-				>
-					<PurchaseFrequency from={startDate} to={endDate} />
-				</DashboardSection>
+				<S.FrequencySectionWrapper>
+					<DashboardSection
+						title="구매 빈도"
+						description="설정된 기간동안 구매된 상품의 가격대별 구매 빈도입니다."
+						action={<DownloadCSVButton from={startDate} to={endDate} />}
+					>
+						<PurchaseFrequency from={startDate} to={endDate} />
+					</DashboardSection>
+				</S.FrequencySectionWrapper>
+
+				<S.CustomerSectionWrapper>
+					<DashboardSection
+						title="고객 목록"
+						description="설정된 기간동안 구매한 고객 목록입니다."
+					>
+						<CustomerList
+							from={startDate}
+							to={endDate}
+							selectedCustomerId={selectedCustomer?.id}
+							onCustomerSelect={setSelectedCustomer}
+						/>
+					</DashboardSection>
+
+					<DashboardSection
+						title="고객 상세"
+						description="선택한 고객의 구매 내역입니다."
+					>
+						<CustomerDetail
+							customer={selectedCustomer}
+							from={startDate}
+							to={endDate}
+						/>
+					</DashboardSection>
+				</S.CustomerSectionWrapper>
 			</S.Content>
 		</S.Layout>
 	);

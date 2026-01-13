@@ -22,6 +22,7 @@ function DatePicker({
 					id="start-date"
 					type="date"
 					value={startDate}
+					max={endDate}
 					onChange={(e) => onStartDateChange(e.target.value)}
 				/>
 			</S.DatePickerItem>
@@ -31,6 +32,7 @@ function DatePicker({
 					id="end-date"
 					type="date"
 					value={endDate}
+					min={startDate}
 					onChange={(e) => onEndDateChange(e.target.value)}
 				/>
 			</S.DatePickerItem>

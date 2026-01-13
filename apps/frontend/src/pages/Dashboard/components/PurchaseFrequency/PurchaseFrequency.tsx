@@ -8,10 +8,7 @@ interface PurchaseFrequencyProps {
 	to: DateRangeParams["to"];
 }
 
-export default function PurchaseFrequency({
-	from,
-	to,
-}: PurchaseFrequencyProps) {
+function PurchaseFrequency({ from, to }: PurchaseFrequencyProps) {
 	const { data, isLoading, isError } = usePurchaseFrequency({ from, to });
 
 	// TODO: 로딩 및 에러 상태 처리 개선 필요
@@ -44,3 +41,5 @@ export default function PurchaseFrequency({
 		</S.Container>
 	);
 }
+
+export default PurchaseFrequency;

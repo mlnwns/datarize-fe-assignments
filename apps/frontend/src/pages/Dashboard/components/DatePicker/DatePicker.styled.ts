@@ -27,9 +27,14 @@ export const Input = styled.input`
 	font-size: 0.875rem;
 	color: #212529;
 	outline: none;
+	cursor: pointer;
 
 	&:focus {
 		border-color: #a0a0a0;
 		box-shadow: 0 0 0 1px rgba(160, 160, 160, 0.2);
 	}
+
+	&::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
 `;

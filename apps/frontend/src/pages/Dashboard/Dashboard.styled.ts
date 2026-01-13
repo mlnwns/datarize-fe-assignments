@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Layout = styled.div`
 	min-height: 100vh;
-  background-color: #f0f4f9;
+  background: #f0f4f9;
 `;
 
 export const Header = styled.header`
@@ -13,7 +13,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
 
-  background-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
 
   border-bottom: 1.5px solid rgba(108, 111, 118, 0.06);

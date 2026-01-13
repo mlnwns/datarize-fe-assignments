@@ -1,44 +1,32 @@
 import styled from "@emotion/styled";
-import { statusMessage } from "@/shared/styles/statusMessage.styled";
 
 export * from "@/shared/styles/table.styled";
 
-export const Table = styled.table`
+export const FrequencyBarWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 	width: 100%;
-	font-size: 0.875rem;
 `;
 
-export const TableHead = styled.thead`
-	background: #f8f9fa;
-`;
-
-export const TableHeadCell = styled.th`
-	padding: 0.75rem 1rem;
-	text-align: left;
+export const FrequencyPercent = styled.span`
+	min-width: 2.5rem;
+	font-size: 0.95rem;
 	font-weight: 600;
-	color: #495057;
-	border-bottom: 2px solid #dee2e6;
 `;
 
-export const TableBody = styled.tbody``;
-
-export const TableRow = styled.tr`
-	&:hover {
-		background: #f8f9fa;
-	}
+export const FrequencyBarBackground = styled.div`
+	flex: 1;
+	height: 0.75rem;
+	background: transparent;
+	border-radius: 6px;
+	overflow: hidden;
+	position: relative;
 `;
 
-export const TableCell = styled.td`
-	padding: 0.75rem 1rem;
-	border-bottom: 1px solid #dee2e6;
-`;
-
-export const LoadingText = styled.p`
-	${statusMessage}
-	color: #6c757d;
-`;
-
-export const ErrorText = styled.p`
-	${statusMessage}
-	color: #dc3545;
+export const FrequencyBar = styled.div<{ percent: number }>`
+	height: 100%;
+	background: #FFD600;
+	border-radius: 6px;
+	width: ${({ percent }) => percent}%;
 `;

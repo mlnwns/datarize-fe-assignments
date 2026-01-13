@@ -10,22 +10,37 @@ interface PurchaseFrequencyProps {
 
 function PurchaseFrequency({ from, to }: PurchaseFrequencyProps) {
 	const { data } = usePurchaseFrequency({ from, to });
+	const totalCount = data.reduce((acc, cur) => acc + cur.count, 0);
 
 	return (
 		<S.Table>
 			<S.TableHead>
 				<S.TableRow>
-					<S.TableHeadCell>가격대</S.TableHeadCell>
-					<S.TableHeadCell>구매빈도</S.TableHeadCell>
+					<S.TableHeadCell width="20%">가격대</S.TableHeadCell>
+					<S.TableHeadCell width="25%">구매빈도</S.TableHeadCell>
+					<S.TableHeadCell width="50%">비율</S.TableHeadCell>
 				</S.TableRow>
 			</S.TableHead>
 			<S.TableBody>
-				{data?.map((item) => (
-					<S.TableRow key={item.range}>
-						<S.TableCell>{formatPriceRange(item.range)}</S.TableCell>
-						<S.TableCell>{item.count}회</S.TableCell>
-					</S.TableRow>
-				))}
+				{data.map((item) => {
+					const percent = totalCount
+						? Math.round((item.count / totalCount) * 100)
+						: 0;
+					return (
+						<S.TableRow key={item.range}>
+							<S.TableCell>{formatPriceRange(item.range)}</S.TableCell>
+							<S.TableCell>{item.count}회</S.TableCell>
+							<S.TableCell>
+								<S.FrequencyBarWrapper>
+									<S.FrequencyPercent>{percent}%</S.FrequencyPercent>
+									<S.FrequencyBarBackground>
+										<S.FrequencyBar percent={percent} />
+									</S.FrequencyBarBackground>
+								</S.FrequencyBarWrapper>
+							</S.TableCell>
+						</S.TableRow>
+					);
+				})}
 			</S.TableBody>
 		</S.Table>
 	);

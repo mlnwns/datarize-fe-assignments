@@ -25,7 +25,7 @@ function DownloadCSVButton({ from, to }: DownloadCSVButtonProps) {
 
 	return (
 		<Button onClick={handleDownload} disabled={isLoading || !hasData}>
-			{isLoading ? "로딩 중" : "CSV 다운로드"}
+			CSV 다운로드
 		</Button>
 	);
 }

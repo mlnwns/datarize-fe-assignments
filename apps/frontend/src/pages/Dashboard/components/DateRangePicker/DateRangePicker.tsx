@@ -19,6 +19,12 @@ function DateRangePicker({
 	const [inputEndDate, setInputEndDate] = useState(endDate);
 
 	const handleBlur = () => {
+		if (!inputStartDate || !inputEndDate) {
+			alert("유효한 날짜를 입력해주세요.");
+			setInputStartDate(startDate);
+			setInputEndDate(endDate);
+			return;
+		}
 		if (inputStartDate > inputEndDate) {
 			onStartDateChange(inputEndDate);
 			onEndDateChange(inputStartDate);

@@ -4,6 +4,8 @@ export const Section = styled.section`
   background: #fff;
   border-radius: 1rem;
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SectionHeader = styled.div`
@@ -30,4 +32,5 @@ export const Description = styled.p`
   margin: 0;
   color: #495057;
   font-size: 0.875rem;
+  margin-bottom: 1.5rem;
 `;

@@ -1,4 +1,7 @@
 import styled from "@emotion/styled";
+import { statusMessage } from "@/shared/styles/statusMessage";
+
+export * from "@/shared/styles/table";
 
 export const Container = styled.div`
 	margin-top: 1.5rem;
@@ -35,13 +38,11 @@ export const TableCell = styled.td`
 `;
 
 export const LoadingText = styled.p`
-	text-align: center;
+	${statusMessage}
 	color: #6c757d;
-	padding: 2rem;
 `;
 
 export const ErrorText = styled.p`
-	text-align: center;
+	${statusMessage}
 	color: #dc3545;
-	padding: 2rem;
 `;

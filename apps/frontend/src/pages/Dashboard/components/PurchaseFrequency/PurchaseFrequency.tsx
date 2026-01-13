@@ -1,6 +1,6 @@
 import type { DateRangeParams } from "@/shared/types/date";
+import { formatPriceRange } from "../../../../shared/utils/price";
 import { usePurchaseFrequency } from "../../hooks/usePurchaseFrequency";
-import { formatPriceRange } from "../../utils/formatPriceRange";
 import * as S from "./PurchaseFrequency.styled";
 
 interface PurchaseFrequencyProps {

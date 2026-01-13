@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { statusMessage } from "@/shared/styles/statusMessage";
+import { statusMessage } from "@/shared/styles/statusMessage.styled";
 
-export * from "@/shared/styles/table";
+export * from "@/shared/styles/table.styled";
 
 export const Container = styled.div`
 	display: flex;

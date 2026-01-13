@@ -1,10 +1,10 @@
-import Button from "@/shared/components/Button/Button";
-import type { DateRangeParams } from "@/shared/types/date";
-import { usePurchases } from "../../../hooks/usePurchases";
+import { usePurchases } from "@/pages/Dashboard/hooks/usePurchases";
 import {
 	convertPurchasesToCSV,
 	downloadCSV,
-} from "../../../utils/downloadPurchasesCSV";
+} from "@/pages/Dashboard/utils/downloadPurchasesCSV";
+import Button from "@/shared/components/Button/Button";
+import type { DateRangeParams } from "@/shared/types/date";
 
 interface DownloadCSVButtonProps {
 	from: DateRangeParams["from"];

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { Customer } from "@/apis/customer/type";
+import { useCustomers } from "@/pages/Dashboard/hooks/useCustomers";
 import Button from "@/shared/components/Button/Button";
 import type { DateRangeParams } from "@/shared/types/date";
 import { formatKoreanPrice } from "@/shared/utils/price";
-import { useCustomers } from "../../hooks/useCustomers";
 import * as S from "./CustomerList.styled";
 
 interface CustomerListProps {

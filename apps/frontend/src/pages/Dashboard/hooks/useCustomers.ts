@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { getCustomers } from "@/apis/customer";
 import type { CustomerListParams } from "@/apis/customer/type";
-import { getCustomers } from "../../../apis/customer";
 
 export const useCustomers = (params?: CustomerListParams) => {
 	return useQuery({
